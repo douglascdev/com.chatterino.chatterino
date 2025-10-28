@@ -26,7 +26,7 @@ jobs:
 
       - name: Install flatpak and add flathub remote
         run: |
-            apt-get install -y flatpak flatpak-builder
+            sudo apt-get install -y flatpak flatpak-builder
             flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           
       - name: Install SDK
