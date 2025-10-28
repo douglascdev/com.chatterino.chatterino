@@ -26,16 +26,16 @@ jobs:
 
       - name: Install flatpak and add flathub remote
         run: |
-            sudo apt-get install -y flatpak flatpak-builder
+            apt-get install -y flatpak flatpak-builder
             flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           
       - name: Install SDK
         run: |
-          sudo flatpak install -y flathub runtime/org.kde.Sdk/x86_64/6.8
+          flatpak install --user -y runtime/org.kde.Sdk/x86_64/6.8
 
       - name: Install platform
         run: |
-          sudo flatpak install -y flathub runtime/org.kde.Platform/x86_64/6.8
+          flatpak install --user -y runtime/org.kde.Platform/x86_64/6.8
           
       - name: Clone C7 repo
         run: |
