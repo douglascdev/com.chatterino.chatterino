@@ -44,16 +44,15 @@ modules:
         sha256: 163d08d783be6d4ab9a979ceb5a4fecbc1d9660d3c34168c581301cd53912b20
   - name: qtkeychain
     buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/0.14.3.tar.gz
+        sha256: a22c708f351431d8736a0ac5c562414f2b7bb919a6292cbca1ff7ac0849cb0a7
     config-opts:
       - -DCMAKE_INSTALL_LIBDIR=/app/lib
       - -DLIB_INSTALL_DIR=/app/lib
       - -DBUILD_TRANSLATIONS=NO
       - -DBUILD_WITH_QT6=ON
-      - -DSECRET_INCLUDE_DIR=/app/include/libsecret-1
-    sources:
-      - type: archive
-        url: https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/0.14.3.tar.gz
-        sha256: a22c708f351431d8736a0ac5c562414f2b7bb919a6292cbca1ff7ac0849cb0a7
   - name: chatterino
     buildsystem: cmake
     config-opts:
