@@ -63,8 +63,8 @@ modules:
       - -DCHATTERINO_UPDATER=OFF
     sources:
       - type: git
-        url: https://github.com/Chatterino/chatterino2.git
-        tag: v2.5.4
+        url: https://github.com/SevenTV/chatterino7
+        tag: v7.5.4
         disable-shallow-clone: true
     post-install:
       - install -Dm755 ./resources/icon.png /app/share/icons/hicolor/256x256/apps/com.chatterino.chatterino.png
