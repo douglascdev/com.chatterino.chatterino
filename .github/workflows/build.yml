@@ -15,10 +15,13 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  image-build:
+    runs-on: ubuntu-latest
   build:
     runs-on: ubuntu-latest
-
+    container:
+      image: fedora:42
+      options: --privileged
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -26,28 +29,28 @@ jobs:
 
       - name: Install flatpak and add flathub remote
         run: |
-            sudo apt-get install -y flatpak flatpak-builder
-            flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            dnf install -y flatpak flatpak-builder git
+            flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           
       - name: Install SDK
         run: |
-          flatpak install --user -y runtime/org.kde.Sdk/x86_64/6.8
+          flatpak install -y runtime/org.kde.Sdk/x86_64/6.8
 
       - name: Install platform
         run: |
-          flatpak install --user -y runtime/org.kde.Platform/x86_64/6.8
+          flatpak install -y runtime/org.kde.Platform/x86_64/6.8
           
       - name: Clone C7 repo
         run: |
-          git clone --recurse-submodules https://github.com/Chatterino/chatterino2.git
+          git clone https://github.com/SevenTV/chatterino7
           
       - name: Build and bundle
         run: |
           cd chatterino2
           mv ../com.chatterino.chatterino.yml .
           mkdir -p build
-          flatpak-builder --user --force-clean --repo=repo build com.chatterino.chatterino.yml
-          flatpak build-bundle --user ./repo chatterino7.flatpak com.chatterino.chatterino master
+          flatpak-builder --force-clean --repo=repo build com.chatterino.chatterino.yml
+          flatpak build-bundle ./repo chatterino7.flatpak com.chatterino.chatterino master
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v5.0.0
