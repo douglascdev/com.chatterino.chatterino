@@ -39,7 +39,7 @@ jobs:
           
       - name: Clone C7 repo
         run: |
-          git clone --recursive-submodules https://github.com/Chatterino/chatterino2.git
+          git clone --recurse-submodules https://github.com/Chatterino/chatterino2.git
           
       - name: Build and bundle
         run: |
