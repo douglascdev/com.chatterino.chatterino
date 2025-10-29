@@ -44,7 +44,7 @@ jobs:
           
       - name: Build and bundle
         run: |
-          cd chatterino2
+          cd chatterino7
           mv ../com.chatterino.chatterino.yml .
           mkdir -p build
           flatpak-builder --force-clean --repo=repo build com.chatterino.chatterino.yml
